@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, Package, ShoppingBag, Tag, LogOut, Menu, X } from 'lucide-react';
+import { LayoutDashboard, Package, ShoppingBag, Tag, Brush, LogOut, Menu, X } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import classes from './AdminLayout.module.css';
 
@@ -9,6 +9,7 @@ const NAV_ITEMS = [
   { to: '/admin/products', icon: Package, label: 'Products' },
   { to: '/admin/categories', icon: Tag, label: 'Categories' },
   { to: '/admin/orders', icon: ShoppingBag, label: 'Orders' },
+  { to: '/admin/requests', icon: Brush, label: 'Requests' },
 ];
 
 const AdminLayout = ({ children, title }) => {
