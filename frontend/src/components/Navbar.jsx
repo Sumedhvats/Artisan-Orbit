@@ -56,6 +56,13 @@ const Navbar = () => {
           >
             Featured
           </Link>
+          <Link
+            to="/artisanal-request"
+            className={`${classes.link} ${isActive('/artisanal-request') ? classes.activeLink : ''}`}
+            onClick={() => setMenuOpen(false)}
+          >
+            Artisanal Request
+          </Link>
         </div>
 
         <Link to="/" className={classes.logo}>

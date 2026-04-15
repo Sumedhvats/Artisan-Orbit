@@ -1,0 +1,198 @@
+.main {
+  min-height: 100vh;
+  padding: calc(var(--space-xl) + var(--space-md)) var(--space-md) var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--clr-cream);
+}
+
+.hero {
+  text-align: center;
+  max-width: 600px;
+  margin-bottom: var(--space-lg);
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  color: var(--clr-dark);
+  margin-bottom: var(--space-xs);
+  font-style: italic;
+}
+
+.hero p {
+  color: var(--clr-mocha);
+  font-size: 1.1rem;
+}
+
+.formSection {
+  width: 100%;
+  max-width: 800px;
+}
+
+.card {
+  background: var(--clr-white);
+  border-radius: 1.5rem;
+  padding: var(--space-md) var(--space-lg);
+  box-shadow: 0 20px 40px rgba(30, 23, 16, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  border: 1px solid var(--clr-sand);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.fieldGroup {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+}
+
+.field label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--clr-mocha);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.field input[type="text"],
+.field input[type="email"],
+.field input[type="tel"],
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--clr-sand);
+  border-radius: 0.5rem;
+  font-family: inherit;
+  font-size: 1rem;
+  background: var(--clr-cream);
+  color: var(--clr-dark);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--clr-taupe);
+  box-shadow: 0 0 0 3px rgba(184, 166, 143, 0.2);
+}
+
+.uploadArea {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  border: 2px dashed var(--clr-taupe);
+  border-radius: 0.5rem;
+  background: var(--clr-cream);
+  display: flex;
+  overflow: hidden;
+  transition: border-color 0.3s ease;
+}
+
+.uploadArea:hover {
+  border-color: var(--clr-accent);
+}
+
+.uploadArea input[type="file"] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.uploadLabel {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  color: var(--clr-mocha);
+  font-size: 0.95rem;
+}
+
+.previewImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.submitBtn {
+  background: var(--clr-dark);
+  color: var(--clr-white);
+  padding: 1rem;
+  border-radius: 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-top: var(--space-sm);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.submitBtn:hover:not(:disabled) {
+  background: var(--clr-mocha);
+  transform: translateY(-2px);
+}
+
+.submitBtn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.error {
+  background: #ffeded;
+  color: #cc0000;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* Success Card */
+.successCard {
+  max-width: 600px;
+  width: 100%;
+  background: var(--clr-white);
+  border-radius: 1.5rem;
+  padding: var(--space-xl) var(--space-lg);
+  box-shadow: 0 20px 40px rgba(30, 23, 16, 0.04);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  border: 1px solid var(--clr-sand);
+}
+
+.successCard h2 {
+  font-size: 2.5rem;
+  font-style: italic;
+  color: var(--clr-dark);
+}
+
+.successCard p {
+  color: var(--clr-mocha);
+  font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+  .fieldGroup {
+    grid-template-columns: 1fr;
+    gap: var(--space-xs);
+  }
+  .card {
+    padding: var(--space-md);
+  }
+}

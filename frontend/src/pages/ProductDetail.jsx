@@ -189,12 +189,6 @@ const ProductDetail = () => {
               </div>
             )}
 
-            {activeZone && customTexts[activeZone] && (
-              <div className={classes.textOverlay} style={{ color: customColors[activeZone] || 'var(--clr-dark)' }}>
-                {customTexts[activeZone]}
-              </div>
-            )}
-
             {images.length > 1 && (
               <>
                 <button

@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Shop from './pages/Shop';
 import ProductDetail from './pages/ProductDetail';
+import ArtisanalRequest from './pages/ArtisanalRequest';
 import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminProducts from './pages/admin/AdminProducts';
@@ -20,6 +21,7 @@ function App() {
           <Route path="/" element={<><Navbar /><Home /></>} />
           <Route path="/shop" element={<><Navbar /><Shop /></>} />
           <Route path="/product/:slug" element={<><Navbar /><ProductDetail /></>} />
+          <Route path="/artisanal-request" element={<><Navbar /><ArtisanalRequest /></>} />
 
           {/* Admin routes (no public navbar) */}
           <Route path="/admin/login" element={<AdminLogin />} />

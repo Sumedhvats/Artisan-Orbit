@@ -85,6 +85,13 @@ export const orderAPI = {
     request(`/orders/${id}/status`, { method: 'PUT', body: JSON.stringify(data) }),
 };
 
+// ── Artisanal Requests ──
+export const artisanalAPI = {
+  create: (data) =>
+    request('/artisanal-requests', { method: 'POST', body: JSON.stringify(data) }),
+  getAll: () => request('/artisanal-requests'),
+};
+
 // ── Upload ──
 export const uploadAPI = {
   productImages: (files) => {
