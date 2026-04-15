@@ -3,6 +3,7 @@ const router = express.Router();
 const Order = require('../models/Order');
 const Product = require('../models/Product');
 const Category = require('../models/Category');
+const ArtisanalRequest = require('../models/ArtisanalRequest');
 const { protect } = require('../middleware/auth');
 
 // GET /api/admin/dashboard - stats overview
@@ -15,7 +16,9 @@ router.get('/dashboard', protect, async (req, res) => {
       shippedOrders,
       totalProducts,
       totalCategories,
-      recentOrders
+      recentOrders,
+      totalArtisanalRequests,
+      pendingArtisanalRequests
     ] = await Promise.all([
       Order.countDocuments(),
       Order.countDocuments({ status: 'pending' }),
@@ -23,7 +26,9 @@ router.get('/dashboard', protect, async (req, res) => {
       Order.countDocuments({ status: 'shipped' }),
       Product.countDocuments({ isActive: true }),
       Category.countDocuments({ isActive: true }),
-      Order.find().sort('-createdAt').limit(5).populate('items.product', 'name images')
+      Order.find().sort('-createdAt').limit(5).populate('items.product', 'name images'),
+      ArtisanalRequest.countDocuments(),
+      ArtisanalRequest.countDocuments({ status: 'pending' })
     ]);
 
     // Revenue calculation
@@ -49,7 +54,9 @@ router.get('/dashboard', protect, async (req, res) => {
           shippedOrders,
           totalProducts,
           totalCategories,
-          totalRevenue
+          totalRevenue,
+          totalArtisanalRequests,
+          pendingArtisanalRequests
         },
         ordersByStatus: ordersByStatus.reduce((acc, item) => {
           acc[item._id] = item.count;

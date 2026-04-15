@@ -37,7 +37,15 @@ const AdminDashboard = () => {
             </div>
             <div className={classes.statCard}>
               <span className={classes.statValue}>{data.stats.pendingOrders}</span>
-              <span className={classes.statLabel}>Pending</span>
+              <span className={classes.statLabel}>Pending Orders</span>
+            </div>
+            <div className={classes.statCard}>
+              <span className={classes.statValue}>{data.stats.totalArtisanalRequests || 0}</span>
+              <span className={classes.statLabel}>Total Requests</span>
+            </div>
+            <div className={classes.statCard}>
+              <span className={classes.statValue}>{data.stats.pendingArtisanalRequests || 0}</span>
+              <span className={classes.statLabel}>Pending Requests</span>
             </div>
           </div>
 

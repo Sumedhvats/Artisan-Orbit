@@ -83,6 +83,8 @@ export const orderAPI = {
   getById: (id) => request(`/orders/${id}`),
   updateStatus: (id, data) =>
     request(`/orders/${id}/status`, { method: 'PUT', body: JSON.stringify(data) }),
+  delete: (id) =>
+    request(`/orders/${id}`, { method: 'DELETE' }),
 };
 
 // ── Artisanal Requests ──
@@ -92,6 +94,8 @@ export const artisanalAPI = {
   getAll: () => request('/artisanal-requests'),
   updateStatus: (id, data) =>
     request(`/artisanal-requests/${id}/status`, { method: 'PUT', body: JSON.stringify(data) }),
+  delete: (id) =>
+    request(`/artisanal-requests/${id}`, { method: 'DELETE' }),
 };
 
 // ── Upload ──

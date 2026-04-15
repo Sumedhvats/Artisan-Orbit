@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Eye, Brush } from 'lucide-react';
+import { Eye, Brush, Trash2 } from 'lucide-react';
 import { artisanalAPI } from '../../api';
 import AdminLayout from './AdminLayout';
 import classes from './AdminDashboard.module.css'; 
@@ -39,22 +39,32 @@ const AdminArtisanalRequests = () => {
     }
   };
 
+  const handleDelete = async (id, type, name) => {
+    if (!window.confirm(`Are you sure you want to delete the ${type} request from ${name}?`)) return;
+    try {
+      await artisanalAPI.delete(id);
+      fetchRequests();
+    } catch (err) {
+      alert(err.message);
+    }
+  };
+
   return (
     <AdminLayout title="Artisanal Requests">
       {loading ? <p>Loading...</p> : requests.length === 0 ? (
         <p className={classes.empty}>No requests yet.</p>
       ) : (
         <div className={classes.table}>
-          <div className={classes.tableHeader} style={{ gridTemplateColumns: '1fr 1.5fr 1fr 1fr 1fr 40px' }}>
+          <div className={classes.tableHeader} style={{ gridTemplateColumns: '1fr 1.5fr 1fr 1fr 1fr 80px' }}>
             <span>Type</span>
             <span>Customer</span>
             <span>WhatsApp</span>
             <span>Date</span>
             <span>Status</span>
-            <span></span>
+            <span>Actions</span>
           </div>
           {requests.map(req => (
-            <div key={req._id} className={classes.tableRow} style={{ gridTemplateColumns: '1fr 1.5fr 1fr 1fr 1fr 40px' }}>
+            <div key={req._id} className={classes.tableRow} style={{ gridTemplateColumns: '1fr 1.5fr 1fr 1fr 1fr 80px' }}>
               <span className={classes.mono}>{req.productType}</span>
               <span>{req.name}<br /><small style={{ color: 'var(--clr-taupe)' }}>{req.email}</small></span>
               <span>{req.whatsapp}</span>
@@ -69,7 +79,10 @@ const AdminArtisanalRequests = () => {
                   {STATUSES.map(s => <option key={s} value={s}>{s}</option>)}
                 </select>
               </span>
-              <span><button onClick={() => setSelected(req)} style={{ color: 'var(--clr-mocha)' }}><Eye size={16} /></button></span>
+              <span style={{ display: 'flex', gap: '10px' }}>
+                <button onClick={() => setSelected(req)} style={{ color: 'var(--clr-mocha)' }}><Eye size={16} /></button>
+                <button onClick={() => handleDelete(req._id, req.productType, req.name)} style={{ color: '#cc0000' }}><Trash2 size={16} /></button>
+              </span>
             </div>
           ))}
         </div>

@@ -57,4 +57,17 @@ router.put('/:id/status', protect, async (req, res, next) => {
   }
 });
 
+// DELETE /api/artisanal-requests/:id -> Admin route to delete a request
+router.delete('/:id', protect, async (req, res, next) => {
+  try {
+    const request = await ArtisanalRequest.findByIdAndDelete(req.params.id);
+    if (!request) {
+      return res.status(404).json({ success: false, message: 'Request not found' });
+    }
+    res.json({ success: true, message: 'Request deleted successfully' });
+  } catch (err) {
+    next(err);
+  }
+});
+
 module.exports = router;

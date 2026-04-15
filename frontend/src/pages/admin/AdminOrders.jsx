@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Eye } from 'lucide-react';
+import { Eye, Trash2 } from 'lucide-react';
 import { orderAPI } from '../../api';
 import AdminLayout from './AdminLayout';
 import classes from './AdminDashboard.module.css'; // reuse dashboard table styles
@@ -37,6 +37,16 @@ const AdminOrders = () => {
     }
   };
 
+  const handleDelete = async (id, num) => {
+    if (!window.confirm(`Are you sure you want to delete order ${num}?`)) return;
+    try {
+      await orderAPI.delete(id);
+      fetchOrders();
+    } catch (err) {
+      alert(err.message);
+    }
+  };
+
   const viewOrder = async (id) => {
     try {
       const res = await orderAPI.getById(id);
@@ -57,10 +67,10 @@ const AdminOrders = () => {
             <span>Customer</span>
             <span>Status</span>
             <span>Total</span>
-            <span></span>
+            <span style={{ width: '80px' }}>Actions</span>
           </div>
           {orders.map(o => (
-            <div key={o._id} className={classes.tableRow} style={{ gridTemplateColumns: '1fr 1.5fr 1fr 0.8fr 40px' }}>
+            <div key={o._id} className={classes.tableRow} style={{ gridTemplateColumns: '1fr 1.5fr 1fr 0.8fr 80px' }}>
               <span className={classes.mono}>{o.orderNumber}</span>
               <span>{o.customer?.name}<br /><small style={{ color: 'var(--clr-taupe)' }}>{o.customer?.email}</small></span>
               <span>
@@ -74,7 +84,10 @@ const AdminOrders = () => {
                 </select>
               </span>
               <span>₹{o.total}</span>
-              <span><button onClick={() => viewOrder(o._id)} style={{ color: 'var(--clr-mocha)' }}><Eye size={16} /></button></span>
+              <span style={{ display: 'flex', gap: '10px' }}>
+                <button onClick={() => viewOrder(o._id)} style={{ color: 'var(--clr-mocha)' }}><Eye size={16} /></button>
+                <button onClick={() => handleDelete(o._id, o.orderNumber)} style={{ color: '#cc0000' }}><Trash2 size={16} /></button>
+              </span>
             </div>
           ))}
         </div>
