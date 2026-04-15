@@ -45,7 +45,7 @@ router.post('/customization', (req, res, next) => {
 
 // Error handler for multer
 router.use((err, req, res, next) => {
-  res.status(400).json({ success: false, message: err.message });
+  console.error("Upload error:", err.message); res.status(400).json({ success: false, message: err.message });
 });
 
 module.exports = router;

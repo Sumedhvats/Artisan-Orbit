@@ -1,0 +1,114 @@
+:root {
+  /* ── Color Palette — White / Beige / Brown ── */
+  --clr-white: #ffffff;
+  --clr-cream: #faf8f4;
+  --clr-sand: #e8dcc8;
+  --clr-taupe: #b8a68f;
+  --clr-mocha: #6b5341;
+  --clr-dark: #1e1710;
+  --clr-accent: #c4956a;
+
+  /* ── Typography ── */
+  --font-display: 'Instrument Serif', serif;
+  --font-sans: 'Manrope', sans-serif;
+
+  /* ── Spacing ── */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 8rem;
+
+  /* ── Easing ── */
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── Reset ── */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--clr-cream);
+  color: var(--clr-dark);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ── Typography ── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font-family: var(--font-sans);
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* ── Selection ── */
+::selection {
+  background-color: var(--clr-accent);
+  color: var(--clr-white);
+}
+
+/* ── Custom Scrollbar ── */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--clr-cream);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--clr-taupe);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--clr-mocha);
+}
+
+/* ── Grain Overlay Utility ── */
+.grain::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ── Utility ── */
+.max-width {
+  max-width: 1440px;
+  margin: 0 auto;
+}

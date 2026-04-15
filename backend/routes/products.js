@@ -77,7 +77,7 @@ router.post('/', protect, async (req, res) => {
     const populated = await product.populate('category', 'name slug');
     res.status(201).json({ success: true, data: populated });
   } catch (err) {
-    res.status(400).json({ success: false, message: err.message });
+    console.error("Product error:", err.message); res.status(400).json({ success: false, message: err.message });
   }
 });
 
@@ -89,7 +89,7 @@ router.put('/:id', protect, async (req, res) => {
     if (!product) return res.status(404).json({ success: false, message: 'Product not found' });
     res.json({ success: true, data: product });
   } catch (err) {
-    res.status(400).json({ success: false, message: err.message });
+    console.error("Product error:", err.message); res.status(400).json({ success: false, message: err.message });
   }
 });
 
