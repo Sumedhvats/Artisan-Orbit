@@ -6,6 +6,13 @@ import classes from './AdminProducts.module.css';
 
 const API_HOST = import.meta.env.VITE_API_URL?.replace('/api', '') || 'http://localhost:5000';
 
+const getImageSrc = (img) => {
+  if (!img) return '';
+  if (img.startsWith('/products') || img.startsWith('/hero')) return img;
+  if (img.startsWith('http')) return img;
+  return `${API_HOST}${img}`;
+};
+
 const EMPTY_FORM = {
   name: '',
   slug: '',
@@ -219,7 +226,7 @@ const AdminProducts = () => {
               <span>
                 <div className={classes.thumbWrap}>
                   {p.images?.[0] ? (
-                    <img src={`${API_HOST}${p.images[0]}`} alt="" />
+                    <img src={getImageSrc(p.images[0])} alt="" />
                   ) : (
                     <ImageIcon size={20} color="var(--clr-taupe)" />
                   )}
@@ -309,7 +316,7 @@ const AdminProducts = () => {
               <div className={classes.imageList}>
                 {form.images.map((img, i) => (
                   <div key={i} className={classes.imgThumb}>
-                    <img src={`${API_HOST}${img}`} alt="" />
+                    <img src={getImageSrc(img)} alt="" />
                     <button className={classes.imgRemove} onClick={() => removeImage(i)}><X size={14} /></button>
                   </div>
                 ))}
