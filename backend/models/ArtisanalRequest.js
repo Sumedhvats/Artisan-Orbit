@@ -28,7 +28,7 @@ const artisanalRequestSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ['pending', 'reviewed', 'contacted', 'completed'],
+    enum: ['pending', 'confirmed', 'in-production', 'shipped', 'delivered', 'cancelled'],
     default: 'pending'
   }
 }, { timestamps: true });

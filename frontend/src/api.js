@@ -90,6 +90,8 @@ export const artisanalAPI = {
   create: (data) =>
     request('/artisanal-requests', { method: 'POST', body: JSON.stringify(data) }),
   getAll: () => request('/artisanal-requests'),
+  updateStatus: (id, data) =>
+    request(`/artisanal-requests/${id}/status`, { method: 'PUT', body: JSON.stringify(data) }),
 };
 
 // ── Upload ──

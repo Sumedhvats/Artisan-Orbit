@@ -37,4 +37,24 @@ router.get('/', protect, async (req, res, next) => {
   }
 });
 
+// PUT /api/artisanal-requests/:id/status -> Admin route to update request status
+router.put('/:id/status', protect, async (req, res, next) => {
+  try {
+    const { status } = req.body;
+    const request = await ArtisanalRequest.findByIdAndUpdate(
+      req.params.id,
+      { status },
+      { new: true, runValidators: true }
+    );
+    
+    if (!request) {
+      return res.status(404).json({ success: false, message: 'Request not found' });
+    }
+    
+    res.json({ success: true, data: request });
+  } catch (err) {
+    next(err);
+  }
+});
+
 module.exports = router;
